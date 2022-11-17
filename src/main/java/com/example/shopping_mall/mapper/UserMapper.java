@@ -26,4 +26,7 @@ public interface UserMapper {
 
     @Update("UPDATE user SET uid=#{uid},password=#{password},ttime=#{ttime},uname=#{uname},role=#{role},activation=#{activation},sex=#{sex} where uname=#{uname}")
     Integer changePasswordByUsername(ShoppingUser userEntity);
+
+    @Select("select uname from user where uname=#{uname}")
+    String getUnameAll(String uname);
 }

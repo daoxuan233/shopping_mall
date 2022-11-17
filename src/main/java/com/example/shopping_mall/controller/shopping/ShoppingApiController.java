@@ -64,7 +64,7 @@ public class ShoppingApiController {
         return new RestBean<>(200,"请求成功",map);
     }
 
-    @ApiOperation("商品分类")
+    @ApiOperation("商品分类[搜索]")
     @RequestMapping("/shop-type")
     public RestBean<List<Shopping>> typeShopping(@ApiParam("查询内容") @RequestParam("shopType") String type){
         List<Shopping> shoppingType = shopService.shoppingType(type);

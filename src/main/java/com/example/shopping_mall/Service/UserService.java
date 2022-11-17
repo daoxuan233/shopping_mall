@@ -16,4 +16,6 @@ public interface UserService {
      */
     RestBean<ShoppingUser> ModifyPassword(String username);
 
+    String UserAll(String uname);
+
 }

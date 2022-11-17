@@ -72,4 +72,9 @@ public class UserServiceImpl implements UserService {
             return new RestBean<>(200,"验证正确，进入首页！",user);
         }
     }
+
+    @Override
+    public String UserAll(String uname) {
+        return userMapper.getUnameAll(uname);
+    }
 }

@@ -47,6 +47,9 @@ public class RegisterApiController {
                                    @ApiParam("邮箱地址") @RequestParam("email") String email,
                                    @ApiParam("验证码") @RequestParam("verify") String verify
                                    ){
+        if ( userService.UserAll(username) != null){
+            return new RestBean<>(302,"用户名已被使用，请重新选择");
+        }
         Boolean doVerify = verifyService.doVerify(email, verify);
         if (doVerify) {
             userService.createUser(username,password,email);
