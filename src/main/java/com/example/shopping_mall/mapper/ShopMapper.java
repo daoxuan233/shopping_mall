@@ -25,7 +25,7 @@ public interface ShopMapper {
     /**
      * 商品热度排名
      */
-    @Select("SELECT  * FROM shopping ORDER BY heat ASC")
+    @Select("SELECT  * FROM shopping ORDER BY heat DESC")
     List<Shopping> heatShop();
 
     /**
