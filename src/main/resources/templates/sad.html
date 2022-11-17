@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p>ajax提交</p>
+  <hr>
+  <div style="height: 200px;width: 200px;position: relative;border: 1px #e2e2e2 solid">
+    <input type="file" accept="image/*" id="imgUpload" style="position: absolute;left: 0;top: 0;opacity: 0;filter: alpha(opacity=0);height: 100%;width: 100%;z-index: 99">
+    <img src="" alt="" id="picImg" style="height: 100%;width: 100%;position: absolute;left: 0;top: 0;">
+  </div>
+
+</body>
+</html>
+<script>
+  $('#imgUpload').change(function () {
+    var formData = new FormData();
+    formData.append("files", $("#imgUpload")[0].files[0]);
+    var index = layer.load();
+    $.ajax({
+      type : "POST",
+      cache: false,
+      dataType: "json",
+      data : formData,
+      processData :  false,
+      contentType :  false,
+      url: baseUrl + '/api/shop/shop-file',
+      success:function(res){
+        layer.close(index);
+        layer.msg(res.msg);
+        if(200 == res.code){
+          $('#picImg').attr('src',res.data);
+        }
+      },
+      error:function() {
+        layer.close(index);
+        layer.msg("服务器异常！");
+      }
+    });
+  });
+</script>
