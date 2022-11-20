@@ -52,4 +52,12 @@ public interface ShopMapper {
     @Select("select * from shopping where snameinfo like concat('%',#{snameinfo},'%')")
     List<Shopping> getShopSNameInfo(@Param("snameinfo") String snameinfo);
 
+    /**
+     * 商品详情
+     * @param stype
+     * @return
+     */
+    @Select("select * from shopping where stype=#{stype}")
+    List<Shopping> getShopTypeAll(@Param("stype") Integer stype);
+
 }

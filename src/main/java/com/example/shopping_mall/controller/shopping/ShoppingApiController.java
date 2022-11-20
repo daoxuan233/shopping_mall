@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/ipa/index")
+@RequestMapping("/api/index")
 @Api(description = "商品相关")
 public class ShoppingApiController {
     @Resource
@@ -130,6 +130,15 @@ public class ShoppingApiController {
         return new RestBean<>(200, "获取成功", shoppings);
     }
 
+    @ApiOperation("商品分类[三级列表]")
+    @RequestMapping("/type-Query")
+    public RestBean<List<Shopping>> typeQuery(@ApiParam("类型id") @RequestParam("id") String id){
+        List<Shopping> shopTypeAll = shopService.getShopTypeAll(Integer.valueOf(id));
+        if (shopTypeAll != null){
+            return new RestBean<>(200,"请求成功",shopTypeAll);
+        }
+        return new RestBean<>(402,"没有该类型的商品");
+    }
     /*@ApiOperation("选中商品添加到购物车的前置接口01")
     @RequestMapping("/shop-shopInfo")
     public RestBean<Map<String,Object>> shopInfo(@ApiParam("商品id") @RequestParam("sid") String sid){

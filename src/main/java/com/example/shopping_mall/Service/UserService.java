@@ -18,4 +18,11 @@ public interface UserService {
 
     String UserAll(String uname);
 
+    /**
+     * 根据id查询用户信息
+     * @param uid
+     * @return
+     */
+    ShoppingUser getUserByUid(String uid);
+
 }

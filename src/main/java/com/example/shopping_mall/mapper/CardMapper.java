@@ -18,7 +18,7 @@ public interface CardMapper {
      * @param card
      * @return
      */
-    @Insert("insert into shoppingcard (sid,mid,number,uid,totalAmount) value(#{sid},#{mid},#{number},#{uid},#{totalAmount})")
+    @Insert("insert into shoppingcard (sid,number,uid,totalAmount) value(#{sid},#{number},#{uid},#{totalAmount})")
     Integer addCard(ShoppingCard card);
 
     /**
@@ -26,7 +26,7 @@ public interface CardMapper {
      * @param card
      * @return
      */
-    @Update("UPDATE shoppingcard SET cid=#{cid},sid=#{sid},mid=#{mid},number=#{number} where cid=#{cid}")
+    @Update("UPDATE shoppingcard SET cid=#{cid},sid=#{sid},number=#{number} where cid=#{cid}")
     Integer updateCard(ShoppingCard card);
 
     /**

@@ -34,4 +34,11 @@ public interface ShopService {
      * 卖家查询
      */
     Seller getSeller(String mid);
+
+    /**
+     * 三级列表的分类查询商品
+     * @param type
+     * @return
+     */
+    List<Shopping> getShopTypeAll(Integer type);
 }

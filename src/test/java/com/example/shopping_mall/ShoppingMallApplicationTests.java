@@ -116,5 +116,7 @@ class ShoppingMallApplicationTests {
 
     @Test
     void c4(){
+        List<Shopping> shopTypeAll = shopService.getShopTypeAll(85);
+        System.out.println(shopTypeAll);
     }
 }

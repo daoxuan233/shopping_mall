@@ -1,6 +1,7 @@
 package com.example.shopping_mall.mapper;
 
 import com.example.shopping_mall.cache.RedisMybatisCache;
+import com.example.shopping_mall.entity.Type;
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,5 +15,8 @@ public interface TypeMapper {
 
     @Select("select * from type where level = #{level} and prentId = #{id}")
     public List<Map<String,Object>> findAll(Integer level, Integer id);
+
+    @Select("select * from type where id=#{id}")
+    Type getTypeById(Integer id);
 
 }

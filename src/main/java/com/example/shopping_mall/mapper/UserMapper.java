@@ -29,4 +29,7 @@ public interface UserMapper {
 
     @Select("select uname from user where uname=#{uname}")
     String getUnameAll(String uname);
+
+    @Select("select * from user where uid=#{uid}")
+    ShoppingUser getAllByUid(Integer uid);
 }

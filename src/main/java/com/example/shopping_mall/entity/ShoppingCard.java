@@ -28,10 +28,6 @@ public class ShoppingCard implements Serializable {
      */
     private Integer sid;
     /**
-     * 卖家id
-     */
-    private Integer mid;
-    /**
      * 该商品的数量
      */
     private Integer number;

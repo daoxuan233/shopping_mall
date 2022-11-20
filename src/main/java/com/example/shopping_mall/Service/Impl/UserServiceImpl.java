@@ -77,4 +77,15 @@ public class UserServiceImpl implements UserService {
     public String UserAll(String uname) {
         return userMapper.getUnameAll(uname);
     }
+
+    /**
+     * 根据id查询用户信息
+     *
+     * @param uid
+     * @return
+     */
+    @Override
+    public ShoppingUser getUserByUid(String uid) {
+        return userMapper.getAllByUid(Integer.valueOf(uid));
+    }
 }

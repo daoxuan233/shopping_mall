@@ -8,10 +8,10 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * (Address)实体类
+ * 地址表(Address)实体类
  *
  * @author makejava
- * @since 2022-11-17 09:52:04
+ * @since 2022-11-20 14:08:27
  */
 @Data
 @AllArgsConstructor

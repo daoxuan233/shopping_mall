@@ -88,4 +88,25 @@ public class ShopServiceImpl implements ShopService {
         return sellerById;
     }
 
+    /**
+     * 三级列表的分类查询商品
+     *
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Shopping> getShopTypeAll(Integer type) {
+        List<Shopping> shopType = shopMapper.getShopTypeAll(type);
+        if (!shopType.isEmpty()){
+            logMapper.addLog(new ShoppingMallLog()
+                    .setLname("前端用户")
+                    .setType("查询")
+                    .setInfo("前端用户查询了商品的三级列表的分类,类型id为："+type)
+                    .setAffectedinfo("0")
+                    .setLtime(new Date())
+            );
+        }
+        return shopType;
+    }
+
 }
