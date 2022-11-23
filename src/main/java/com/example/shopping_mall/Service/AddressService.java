@@ -27,4 +27,25 @@ public interface AddressService {
      */
     Map<String , String> getAddressByUId(Integer uid);
 
+    /**
+     * 通过aid，查询唯一
+     * @param aid
+     * @return
+     */
+    Address getAddressByAid(Integer aid);
+
+    /**
+     * 地址管理-查看
+     * @param uid
+     * @param uanem
+     * @return
+     */
+    Map<String,Address> addressManagement(Integer uid , String uanem);
+
+    /**
+     * 修改地址
+     * @param address
+     * @return
+     */
+    Integer editAddress(Address address);
 }

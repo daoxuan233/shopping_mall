@@ -57,4 +57,9 @@ public class Shopping implements Serializable {
     @ApiModelProperty("商品类型")
     private Integer stype;
 
+    /**
+     * 商品热度
+     */
+    @ApiModelProperty("商品热度")
+    private Integer heat;
 }

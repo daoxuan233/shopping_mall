@@ -11,14 +11,13 @@ import java.io.Serializable;
  * (Shoppingcard)实体类
  *
  * @author makejava
- * @since 2022-11-16 09:46:24
+ * @since 2022-11-21 11:46:49
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
 public class ShoppingCard implements Serializable {
-
     /**
      * 购物车中的id
      */
@@ -40,5 +39,8 @@ public class ShoppingCard implements Serializable {
      */
     private Double totalamount;
 
+    public Double gettotalAmount() {
+        return totalamount;
+    }
 }
 

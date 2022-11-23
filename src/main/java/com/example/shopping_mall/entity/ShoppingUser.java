@@ -66,4 +66,8 @@ public class ShoppingUser implements Serializable {
      */
     @ApiModelProperty("开户时间")
     private Date ttime;
+    /**
+     * 用户头像
+     */
+    private String img;
 }

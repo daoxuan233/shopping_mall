@@ -52,4 +52,20 @@ public interface CardMapper {
      */
     @Select("select * from shoppingcard where cid=#{cid}")
     ShoppingCard getCardAllById (Integer cid);
+
+    /**
+     * 根据cid进行指定删除
+     * @param cid
+     * @return
+     */
+    @Delete("delete from shoppingcard where cid=#{cid}")
+    Integer deleteCardOid(@Param("cid") Integer cid);
+
+    /**
+     * 根据uid，删除所有
+     * @param uid
+     * @return
+     */
+    @Delete("delete  from shoppingcard where uid = #{uid}")
+    Integer deleteCardAll(Integer uid);
 }

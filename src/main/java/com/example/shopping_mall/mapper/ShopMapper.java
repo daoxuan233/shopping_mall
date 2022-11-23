@@ -60,4 +60,11 @@ public interface ShopMapper {
     @Select("select * from shopping where stype=#{stype}")
     List<Shopping> getShopTypeAll(@Param("stype") Integer stype);
 
+    /**
+     * 热度增加
+     * @param sid
+     * @return
+     */
+    @Update("UPDATE shopping SET heat=#{heat} where sid=#{sid}")
+    Integer increaseHeat(Integer sid , Integer heat);
 }

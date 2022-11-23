@@ -8,35 +8,32 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * 地址表(Address)实体类
+ * 银行卡表(Bankcard)实体类
  *
  * @author makejava
- * @since 2022-11-20 14:08:27
+ * @since 2022-11-23 11:20:52
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Address implements Serializable {
+public class Bankcard implements Serializable {
     /**
-     * 用户地址管理的id
+     * 卡号
      */
-    private Integer aid;
+    private Integer cid;
     /**
-     * 收货人姓名
+     * 卡类型：金卡、银卡、钻石卡...
      */
-    private String name;
+    private String type;
     /**
-     * 收货地址
+     * 余额
      */
-    private String address;
+    private Double account;
     /**
-     * 收货人联系方式
-     */
-    private String namephone;
-    /**
-     * 当前使用用户的id
+     * 用户id
      */
     private Integer uid;
+
 }
 

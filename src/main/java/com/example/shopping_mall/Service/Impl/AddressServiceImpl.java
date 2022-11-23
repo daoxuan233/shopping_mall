@@ -89,4 +89,48 @@ public class AddressServiceImpl implements AddressService {
         }
         return addressByUId;
     }
+
+    /**
+     * 通过aid，查询唯一
+     *
+     * @param aid
+     * @return
+     */
+    @Override
+    public Address getAddressByAid(Integer aid) {
+        return addressMapper.getAddressByAid(aid);
+    }
+
+    /**
+     * 地址管理
+     *
+     * @param uid
+     * @param uanem
+     * @return
+     */
+    @Override
+    public Map<String, Address> addressManagement(Integer uid, String uanem) {
+        return addressMapper.getAllByUId(uid,uanem);
+    }
+
+    /**
+     * 修改地址
+     *
+     * @param address
+     * @return
+     */
+    @Override
+    public Integer editAddress(Address address) {
+        Integer integer = addressMapper.editAddress(address);
+        if (integer != 0){
+            logMapper.addLog(new ShoppingMallLog()
+                    .setLname("用户"+address.getUid())
+                    .setType("修改")
+                    .setInfo("用户："+address.getUid()+"修改内容："+address)
+                    .setAffectedinfo("0")
+                    .setLtime(new Date())
+            );
+        }
+        return integer;
+    }
 }

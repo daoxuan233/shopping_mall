@@ -109,4 +109,15 @@ public class ShopServiceImpl implements ShopService {
         return shopType;
     }
 
+    /**
+     * 热度增加
+     *
+     * @param sid
+     * @return
+     */
+    @Override
+    public Integer increaseHeat(Integer sid , Integer heat) {
+        return shopMapper.increaseHeat(sid,heat);
+    }
+
 }

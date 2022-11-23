@@ -46,5 +46,10 @@ public class Seller implements Serializable {
      */
     @ApiModelProperty("商铺图片")
     private String image;
+    /**
+     * 用户id
+     */
+    @ApiModelProperty("用户表id")
+    private String uid;
 
 }

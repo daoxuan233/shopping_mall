@@ -2,10 +2,7 @@ package com.example.shopping_mall.mapper;
 
 import com.example.shopping_mall.cache.RedisMybatisCache;
 import com.example.shopping_mall.entity.Address;
-import org.apache.ibatis.annotations.CacheNamespace;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -35,4 +32,27 @@ public interface AddressMapper {
     @Select("select address from address where uid=#{uid}")
     Map<String , String> getAddressByUId(Integer uid);
 
+    /**
+     * 通过aid，查询唯一
+     * @param aid
+     * @return
+     */
+    @Select("select address from address where aid=#{aid}")
+    Address getAddressByAid(Integer aid);
+
+    /**
+     * 通过uid 返回给前端地址
+     * @param uid
+     * @return
+     */
+    @Select("select * from address where uid=#{uid} and name=#{name}")
+    Map<String , Address> getAllByUId(@Param("uid") Integer uid , @Param("name") String name);
+
+    /**
+     * 修改地址
+     * @param address
+     * @return
+     */
+    @Update("UPDATE address SET uid=#{uid} , name=#{name} , address=#{address} , namephone=#{namephone} where uid=#{uid}")
+    Integer editAddress(Address address);
 }

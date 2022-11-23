@@ -1,12 +1,12 @@
 package com.example.shopping_mall;
 
+import com.example.shopping_mall.Service.OrdersService;
 import com.example.shopping_mall.Service.TypeService;
 import com.example.shopping_mall.Service.shop.CardService;
 import com.example.shopping_mall.Service.shop.ShopService;
-import com.example.shopping_mall.entity.Seller;
-import com.example.shopping_mall.entity.Shopping;
-import com.example.shopping_mall.entity.ShoppingCard;
-import com.example.shopping_mall.entity.ShoppingUser;
+import com.example.shopping_mall.entity.*;
+import com.example.shopping_mall.mapper.CommentMapper;
+import com.example.shopping_mall.mapper.OrdersMapper;
 import com.example.shopping_mall.mapper.ShopMapper;
 import com.example.shopping_mall.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -35,6 +35,15 @@ class ShoppingMallApplicationTests {
 
     @Resource
     CardService cardService;
+
+    @Resource
+    CommentMapper commentMapper;
+
+    @Resource
+    OrdersMapper ordersMapper;
+
+    @Resource
+    OrdersService ordersService;
 
     @Test
     void contextLoads() {
@@ -106,7 +115,9 @@ class ShoppingMallApplicationTests {
 
     @Test
     void c2(){
-
+        Orders orders = ordersService.isOrders(1001);
+        String sid = orders.getSid();
+        System.out.println(sid);
     }
 
     @Test
@@ -119,4 +130,24 @@ class ShoppingMallApplicationTests {
         List<Shopping> shopTypeAll = shopService.getShopTypeAll(85);
         System.out.println(shopTypeAll);
     }
+
+    @Test
+    void C5(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("state",1);
+        List<Orders> orders = ordersMapper.selectOrdersInfoWithParam(map);
+        System.out.println(orders);
+    }
+
+    @Test
+    void C6(){
+        String string = "张三,李四,王五,马六,小气,";
+        String substring = string.substring(0, string.length() - 1);
+        System.out.println(substring);
+        String[] split = substring.split(",");//以逗号分割
+        for (String string2 : split) {
+            System.out.println("数据-->>>" + string2);
+        }
+    }
+
 }

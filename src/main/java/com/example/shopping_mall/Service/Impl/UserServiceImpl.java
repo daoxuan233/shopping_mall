@@ -88,4 +88,36 @@ public class UserServiceImpl implements UserService {
     public ShoppingUser getUserByUid(String uid) {
         return userMapper.getAllByUid(Integer.valueOf(uid));
     }
+
+    /**
+     * 个人中心
+     *
+     * @param uname
+     * @return
+     */
+    @Override
+    public ShoppingUser user(String uname) {
+        return userMapper.findUser(uname);
+    }
+
+    /**
+     * 修改个人信息
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public Integer edit(ShoppingUser user) {
+        Integer edit = userMapper.edit(user);
+        if (edit != null){
+            logMapper.addLog(new ShoppingMallLog()
+                    .setLname("用户："+user.getUid())
+                    .setType("修改")
+                    .setInfo("用户更新个人信息，更改如下："+user)
+                    .setAffectedinfo("0")
+                    .setLtime(new Date())
+            );
+        }
+        return edit;
+    }
 }

@@ -25,4 +25,17 @@ public interface UserService {
      */
     ShoppingUser getUserByUid(String uid);
 
+    /**
+     * 个人中心
+     * @param uname
+     * @return
+     */
+    ShoppingUser user(String uname);
+
+    /**
+     * 修改个人信息
+     * @param user
+     * @return
+     */
+    Integer edit(ShoppingUser user);
 }

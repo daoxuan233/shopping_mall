@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @Api(description = "登录、注册、验证码请求、退出系统")
 public class RegisterApiController {
     @Resource

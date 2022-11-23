@@ -41,4 +41,11 @@ public interface ShopService {
      * @return
      */
     List<Shopping> getShopTypeAll(Integer type);
+
+    /**
+     * 热度增加
+     * @param sid
+     * @return
+     */
+    Integer increaseHeat(Integer sid , Integer heat);
 }

@@ -30,4 +30,19 @@ public interface CardService {
      * @return ShoppingCard
      */
     ShoppingCard getCardByIdCid(Integer cid);
+
+    /**
+     * 删除部分商品
+     * @param uid
+     * @param cid
+     * @return
+     */
+    Integer deletePart(Integer uid , Integer cid);
+
+    /**
+     * 删除全部
+     * @param uid
+     * @return
+     */
+    Integer deleteAll(Integer uid);
 }

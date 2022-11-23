@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/index")
+@RequestMapping("/index")
 @Api(description = "商品相关")
 public class ShoppingApiController {
     @Resource
@@ -49,7 +49,7 @@ public class ShoppingApiController {
         return new RestBean<>(200,"正常显示！",all);
     }
 
-    @ApiOperation("商品展示详情/通过id查询商品详情/购物车的前置接口01")
+    @ApiOperation("商品展示详情/通过id查询商品详情")
     @RequestMapping("/product-details")
     public RestBean<Map<String,Object>> product(@ApiParam("商品id") @RequestParam("sid") String sid){
         Shopping shopping = shopService.productDetails(sid);
@@ -61,6 +61,11 @@ public class ShoppingApiController {
         Map<String , Object> map = new HashMap<>();
         map.put("shopping",shopping);
         map.put("sellers",sellers);
+        Integer heat = shopping.getHeat();
+        Integer integer = shopService.increaseHeat(Integer.valueOf(sid),heat+1);
+        if (integer <= 0 ){
+            return new RestBean<>(402,"商品热度增加错误");
+        }
         return new RestBean<>(200,"请求成功",map);
     }
 
@@ -139,18 +144,4 @@ public class ShoppingApiController {
         }
         return new RestBean<>(402,"没有该类型的商品");
     }
-    /*@ApiOperation("选中商品添加到购物车的前置接口01")
-    @RequestMapping("/shop-shopInfo")
-    public RestBean<Map<String,Object>> shopInfo(@ApiParam("商品id") @RequestParam("sid") String sid){
-        Shopping shoppingInfo = shopService.productDetails(sid);
-        if (shoppingInfo == null){
-            return new RestBean<>(402,"请求失败，请检查商品id");
-        }
-        String seller = shoppingInfo.getSeller();
-        Seller sellers = shopService.getSeller(seller);
-        Map<String , Object> map = new HashMap<>();
-        map.put("shopping",shoppingInfo);
-        map.put("sellers",sellers);
-        return new RestBean<>(200,"请求成功",map);
-    }*/
 }
