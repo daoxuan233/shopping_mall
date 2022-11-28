@@ -16,6 +16,9 @@ public interface UserMapper {
     @Select("select * from user")
     List<ShoppingUser> getUserAll();
 
+    @Select("select * from user where uname = #{username}")
+    ShoppingUser getPasswordByUsername(@Param("username") String username);
+
     @Insert("insert into user(uname,umail,password,phone,idcard,role,sex,activation,ttime,img) value(#{uname},#{umail},#{password},#{phone},#{idcard},#{role},#{sex},#{activation},#{ttime},#{img})")
     Integer registerUser( ShoppingUser user);
 

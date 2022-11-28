@@ -2,6 +2,7 @@ package com.example.shopping_mall.config;
 
 import com.example.shopping_mall.Service.AuthServiceImpl;
 import com.example.shopping_mall.filter.LoginVerifyCodeFilter;
+import com.example.shopping_mall.mapper.UserMapper;
 import com.example.shopping_mall.repo.RedisTokenRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Resource
     LoginVerifyCodeFilter verifyCodeFilter;
 
+    @Resource
+    UserMapper userMapper;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /*http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);*/
@@ -39,8 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/api/auth/access-deny")
-                .loginProcessingUrl("/api/login")
+                .loginPage("/api/auth/access-deny")//默认的登录页路径
+                .loginProcessingUrl("/api/auth/login")//处理登录请求的接口
+                /*.successHandler(this::onAuthenticationSuccess)*/
                 .successForwardUrl("/api/auth/login-success")
                 .failureForwardUrl("/api/auth/login-failure")
                 .and()
@@ -58,6 +63,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //后面我们还会讲解如何使用数据库来持久化保存Token信息
                 /*.tokenValiditySeconds(60*2)  //Token的有效时间（秒）默认为14天;单位 秒*/
         ;
+        //开启跨域访问
+        /*http.cors().disable();*/
     }
 
     @Override
@@ -85,6 +92,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         corsConfigurationSource.registerCorsConfiguration("/**", config);
         //返回CorsFilter
         return new CorsFilter(corsConfigurationSource);
-
     }
+
+    /*public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+        ShoppingUser user = userMapper.getPasswordByUsername(authentication.getName());//验证信息
+        if (user.getRole().equals("user")){
+            httpServletResponse.sendRedirect("/api/user/index");//接口路径
+        }
+        if (user.getRole().equals("shop")){
+            httpServletResponse.sendRedirect("/api/shop/index");//接口路径
+        }
+        if (user.getRole().equals("admin")){
+            httpServletResponse.sendRedirect("/api/admin/index");//接口路径
+        }
+    }*/
 }

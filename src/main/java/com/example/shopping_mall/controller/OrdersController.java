@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 @Api(description = "订单相关")
 public class OrdersController {
     @Resource

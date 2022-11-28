@@ -45,4 +45,12 @@ public interface CardService {
      * @return
      */
     Integer deleteAll(Integer uid);
+
+    /**
+     * 判断该用户是否拥有购物车
+     * @param uid
+     * @return
+     */
+    List<ShoppingCard> isCardUser(Integer uid);
+
 }

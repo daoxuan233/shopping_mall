@@ -1,8 +1,10 @@
 package com.example.shopping_mall.controller;
 
 import com.example.shopping_mall.Service.AddressService;
+import com.example.shopping_mall.Service.BankCardService;
 import com.example.shopping_mall.Service.UserService;
 import com.example.shopping_mall.entity.Address;
+import com.example.shopping_mall.entity.Bankcard;
 import com.example.shopping_mall.entity.ShoppingUser;
 import com.example.shopping_mall.entity.log.ShoppingMallLog;
 import com.example.shopping_mall.entity.resp.RestBean;
@@ -24,7 +26,7 @@ import java.util.Map;
 
 @RestController
 @Api(description = "用户接口")
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserApiController {
     @Autowired
     UserMapper userMapper;
@@ -41,15 +43,19 @@ public class UserApiController {
     @Resource
     AddressService addressService;
 
+    @Resource
+    BankCardService bankCardService;
+
     @ApiResponses({
             @ApiResponse(code = 200 , message = "注册成功"),
             @ApiResponse(code = 402 , message = "请求错误，没有该用户")
     })
     @GetMapping("/change-password")
     @ApiOperation("忘记密码接口")
-    public RestBean<ShoppingUser> change(@ApiParam("用户名") @RequestParam("username") String username,
-                                        @ApiParam("密码") @RequestParam("password") String password
-                                     ) {
+    public RestBean<ShoppingUser> change(
+            @ApiParam("用户名") @RequestParam("username") String username,
+            @ApiParam("密码") @RequestParam("password") String password
+    ) {
         ShoppingUser user = userMapper.findUser(username);
         if (user != null){
             userMapper.changePasswordByUsername(new ShoppingUser()
@@ -202,6 +208,22 @@ public class UserApiController {
         Map<String, Address> stringAddressMap = addressService.addressManagement(Integer.valueOf(uid), user.getUname());
         return new RestBean<>(200,"请求成功,信息已添加",stringAddressMap);
     }
+
+    @ApiOperation("账户内余额")
+    @RequestMapping("/balance-account")
+    public RestBean<Bankcard> show(
+        @ApiParam("当前用户id") @RequestParam("uid") String uid
+    ){
+        Bankcard bankcard = bankCardService.ByUidQueryBanCard(Integer.valueOf(uid));
+        if (bankcard == null){
+            return new RestBean<>(402,"该用户还没有注册过！");
+        }
+        return new RestBean<>(200,"请求成功",bankcard);
+    }
+
+
+
+
 
     //Modifying the Profile Picture
 

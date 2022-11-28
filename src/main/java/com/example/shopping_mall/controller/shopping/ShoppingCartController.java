@@ -22,7 +22,7 @@ import java.util.Map;
 import static java.lang.Double.parseDouble;
 
 @RestController
-@RequestMapping("/card")
+@RequestMapping("/api/card")
 @Api(description = "购物车相关")
 public class ShoppingCartController {
 
@@ -67,6 +67,10 @@ public class ShoppingCartController {
     public RestBean<List<ShoppingCard>> showCard(
             @ApiParam("当前用户的Id") @RequestParam("uid") String uid
     ){
+        List<ShoppingCard> cardUser = cardService.isCardUser(Integer.valueOf(uid));
+        if (cardUser.isEmpty()){
+            return new RestBean<>(404,"用户还没有购物车");
+        }
         List<ShoppingCard> byIDAll = cardService.getCardByIDAll(Integer.valueOf(uid));
         if (byIDAll == null){
             return new RestBean<>(402,"请求错误，请检查");

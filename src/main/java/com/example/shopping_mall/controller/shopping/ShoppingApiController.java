@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/api/index")
 @Api(description = "商品相关")
 public class ShoppingApiController {
     @Resource

@@ -24,9 +24,9 @@ public class AuthServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println(s);
+        System.out.println("s:"+s);
         ShoppingUser user = userMapper.findUser(s);
-        System.out.println(user);
+        System.out.println("user:"+user);
         if (user == null) throw new UsernameNotFoundException("用户"+s+"登录失败");
         else {
             logMapper.addLog(new ShoppingMallLog()

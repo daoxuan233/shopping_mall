@@ -8,15 +8,20 @@ public class CommentDynaSqlProviderBuilder {
         return new SQL(){
             {
                 SELECT("*");
-                FROM("comment");
                 //条件
+                if (grade.equals(0)){
+                    FROM("comment");
+                }
                 if (grade.equals(1)){
+                    FROM("comment");
                     WHERE("grade=#{grade}");
                 }
                 if (grade.equals(2)){
+                    FROM("comment");
                     WHERE("grade=#{grade}");
                 }
                 if (grade.equals(3)){
+                    FROM("comment");
                     WHERE("grade=#{grade}");
                 }
             }

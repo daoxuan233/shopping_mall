@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/type")
+@RequestMapping("/api/type")
 public class TypeController {
 
     @Resource

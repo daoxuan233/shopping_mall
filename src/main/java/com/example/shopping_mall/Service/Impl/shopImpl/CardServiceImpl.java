@@ -105,4 +105,15 @@ public class CardServiceImpl implements CardService {
         }
         return integer;
     }
+
+    /**
+     * 判断该用户是否拥有购物车
+     *
+     * @param uid
+     * @return
+     */
+    @Override
+    public List<ShoppingCard> isCardUser(Integer uid) {
+        return cardMapper.getCardAll(uid);
+    }
 }

@@ -23,7 +23,7 @@ import java.util.Map;
  * @Description: 评论控制器
  */
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 @Api(description = "评论相关")
 public class CommentController {
 
@@ -48,7 +48,8 @@ public class CommentController {
         @ApiParam("父评论") @RequestParam(value = "parent_comment_id") String parentCommentId,
         @ApiParam("评论内容") @RequestParam("content") String content,
         /*@ApiParam("评论角色[0表示普通用户，1表示商家]") @RequestParam("urole") Integer urole,*/
-        @ApiParam("grade[商品评价等级](数字：1表示差评，2表示中评，3表示好评)") @RequestParam("grade") String grade
+        @ApiParam("grade[商品评价等级](数字：1表示差评，2表示中评，3表示好评)")
+        @RequestParam("grade") String grade
     ) {
         Shopping shopping = shopService.productDetails(sid);
         if (shopping == null){
@@ -99,10 +100,10 @@ public class CommentController {
     }
 
     @RequestMapping("/comment-classification")
-    @ApiOperation("根据好评等查看评论")
+    @ApiOperation("根据商品评价等查看评论")
     @ResponseBody
     public RestBean<List<Comment>> classification(
-            @ApiParam("grade[商品评价等级](数字：1表示差评，2表示中评，3表示好评)") @RequestParam("grade") String grade
+            @ApiParam("grade[商品评价等级](数字：1表示差评，2表示中评，3表示好评)") @RequestParam(value = "grade") String grade
     ){
         List<Comment> comments = commentService.classificationByReviewLevel(Integer.valueOf(grade));
         if (comments == null){

@@ -27,7 +27,7 @@ public class LoginVerifyCodeFilter extends GenericFilterBean {
      *      并且请求地址是 /login时，获取参数中的 code 字段值，
      *      该字段保存了用户从前端页面传来的验证码，然后获取 session 中保存的验证码
      */
-    private String defaultFilterProcessUrl = "/api/login";
+    private String defaultFilterProcessUrl = "/api/auth/login";
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
