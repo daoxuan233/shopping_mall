@@ -150,4 +150,8 @@ class ShoppingMallApplicationTests {
         }
     }
 
+    @Test
+    void c01(){
+        System.out.println("其实我也不知道做什么，要不写一个加权计算程序");
+    }
 }
