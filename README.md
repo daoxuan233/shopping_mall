@@ -34,7 +34,7 @@
     - 安装JDK 8或更高版本，确保Java运行环境正常。
     - 安装Maven 3.6及以上版本，用于项目构建和依赖管理。
 2. **项目安装与运行**
-    - 克隆项目代码至本地：`git clone [项目仓库地址]`。
+    - 克隆项目代码至本地：`git clone https://github.com/daoxuan233/shopping_mall`。
     - 进入项目目录：`cd shopping_mall`。
     - 使用Maven构建项目：`mvn clean install`。
     - 启动项目：`mvn spring-boot:run`，项目默认运行在8080端口，通过浏览器访问`http://localhost:8080`可测试后端接口是否正常工作（可结合前端或测试工具进一步验证功能）。
